@@ -25,9 +25,9 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		
 		$id = "";
 	
-		$request = $this->$wptServer . 'runtest.php?f=xml&url=' . urlencode($this->$testURL) . 
-			"&location=" . $this->$location .
-			( $this->$wptAPIKey ? "&k=" . $this->$wptAPIKey : "" );
+		$request = $this->wptServer . 'runtest.php?f=xml&url=' . urlencode($this->testURL) . 
+			"&location=" . $this->location .
+			( $this->wptAPIKey ? "&k=" . $this->wptAPIKey : "" );
 	
 		$doc = new DOMDocument();
 		
@@ -57,7 +57,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		
 		$code = "";
 	
-		$request = $this->$wptServer . 'testStatus.php?f=xml&test=' . urlencode($id);
+		$request = this->$wptServer . 'testStatus.php?f=xml&test=' . urlencode($id);
 		
 		$doc = new DOMDocument();
 		
@@ -81,7 +81,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		$scoreCompress = 0;
 		$fail = true;
 	
-		$request = $this->$wptServer . 'xmlResult/' . urlencode($id) . "/";
+		$request = $this->wptServer . 'xmlResult/' . urlencode($id) . "/";
 		
 		$doc = new DOMDocument();
 		
