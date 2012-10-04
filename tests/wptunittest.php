@@ -108,7 +108,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		return $fail;
 	}
 	
-	protected function testSite() {
+	public function testSite() {
 		
 		// submit test
 		$testID = submitTest();
