@@ -14,12 +14,12 @@ class WPTTest extends PHPUnit_Framework_TestCase
 	protected $testURL = "http://andydavies.github.com/veudemo/";
 	
 	// Fetch file and retry if it fails.
-	protected function fetchUrl($fn) {
+	public function fetchUrl($fn) {
 		$contents = file_get_contents($fn);
 		return $contents;
 	}
 	
-	protected function submitTest() {
+	public function submitTest() {
 		
 //		global $wptAPIKey, $wptServer, $testURL, $location;
 		
@@ -52,7 +52,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		return $id;
 	}
 	
-	protected function getTestStatus($id) {
+	public function getTestStatus($id) {
 //		global $wptServer;
 		
 		$code = "";
@@ -74,7 +74,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		return $code;
 	}
 	
-	protected function getTestResult($id) {
+	public function getTestResult($id) {
 //		global $wptServer;
 		
 		$code = "";
