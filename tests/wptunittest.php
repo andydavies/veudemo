@@ -27,7 +27,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 	
 		$request = $this->$wptServer . 'runtest.php?f=xml&url=' . urlencode($this->$testURL) . 
 			"&location=" . $this->$location .
-			( $wptAPIKey ? "&k=" . $this->$wptAPIKey : "" );
+			( $this->$wptAPIKey ? "&k=" . $this->$wptAPIKey : "" );
 	
 		$doc = new DOMDocument();
 		
