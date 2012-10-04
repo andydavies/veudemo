@@ -100,7 +100,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 						$fail = true;
 						// throw the exception here
 					}
-					$this->assertGreaterThanOrEqual(75, score, "Make the images smaller");
+					$this->assertGreaterThanOrEqual(75, $scoreCompress, "Make the images smaller");
 				}
 			}
 			unset( $doc );
