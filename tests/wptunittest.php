@@ -57,7 +57,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		
 		$code = "";
 	
-		$request = this->$wptServer . 'testStatus.php?f=xml&test=' . urlencode($id);
+		$request = $this->wptServer . 'testStatus.php?f=xml&test=' . urlencode($id);
 		
 		$doc = new DOMDocument();
 		
