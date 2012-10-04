@@ -32,7 +32,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		$doc = new DOMDocument();
 		
 		if ( $doc ) {
-			$response = fetchUrl($request);
+			$response = $this->fetchUrl($request);
 			
 			if ( strlen($response) ) {
 				$doc->loadXML($response);
@@ -62,7 +62,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		$doc = new DOMDocument();
 		
 		if ( $doc ) {
-			$response = fetchUrl($request);
+			$response = $this->fetchUrl($request);
 	
 			if ( strlen($response) ) {
 				$doc->loadXML($response);
@@ -86,7 +86,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		$doc = new DOMDocument();
 		
 		if ( $doc ) {
-			$response = fetchUrl($request);
+			$response = $this->fetchUrl($request);
 	
 			if ( strlen($response) ) {
 				$doc->loadXML($response);
@@ -111,7 +111,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 	public function testSite() {
 		
 		// submit test
-		$testID = submitTest();
+		$testID = $this->submitTest();
 		
 		if(strlen($testID)) {
 			$status = 100;
@@ -121,7 +121,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		
 			while($status < 200 && $wait < $maxWait) {
 		
-				$status = getTestStatus($testID);
+				$status = $this->getTestStatus($testID);
 		
 				if($status < 200) {
 					sleep($wait);
@@ -131,7 +131,7 @@ class WPTTest extends PHPUnit_Framework_TestCase
 			}
 		
 			if($status == 200) {
-				getTestResult($testID);
+				$this->getTestResult($testID);
 			}
 		}
 	}  
