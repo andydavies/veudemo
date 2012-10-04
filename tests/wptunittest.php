@@ -6,22 +6,22 @@ class WPTTest extends PHPUnit_Framework_TestCase
 	// Demo code to call WPT API, wait for a retrieve result
 	// Lots of code borrowed from HTTPArchive.org
 	
-	$wptAPIKey = "andysdemorocks";
-	$wptServer = "http://velocity.webpagetest.org/";
-	$location = "Europe";
+	protected $wptAPIKey = "andysdemorocks";
+	protected $wptServer = "http://velocity.webpagetest.org/";
+	protected $location = "Europe";
 	
 	//$testURL = "http://news.bbc.co.uk";
-	$testURL = "http://andydavies.github.com/veudemo/";
+	protected $testURL = "http://andydavies.github.com/veudemo/";
 	
 	// Fetch file and retry if it fails.
-	function fetchUrl($fn) {
+	protected function fetchUrl($fn) {
 		$contents = file_get_contents($fn);
 		return $contents;
 	}
 	
-	function submitTest() {
+	protected function submitTest() {
 		
-		global $wptAPIKey, $wptServer, $testURL, $location;
+//		global $wptAPIKey, $wptServer, $testURL, $location;
 		
 		$id = "";
 	
@@ -52,8 +52,8 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		return $id;
 	}
 	
-	function getTestStatus($id) {
-		global $wptServer;
+	protected function getTestStatus($id) {
+//		global $wptServer;
 		
 		$code = "";
 	
@@ -74,8 +74,8 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		return $code;
 	}
 	
-	function getTestResult($id) {
-		global $wptServer;
+	protected function getTestResult($id) {
+//		global $wptServer;
 		
 		$code = "";
 		$scoreCompress = 0;
@@ -108,29 +108,33 @@ class WPTTest extends PHPUnit_Framework_TestCase
 		return $fail;
 	}
 	
-	// submit test
-	$testID = submitTest();
-	
-	if(strlen($testID)) {
-		$status = 100;
-	
-		$wait = 10;
-		$maxWait = 100;
-	
-		while($status < 200 && $wait < $maxWait) {
-	
-			$status = getTestStatus($testID);
-	
-			if($status < 200) {
-				sleep($wait);
-				$wait *= 1.5;
+	protected function testSite() {
+		
+		// submit test
+		$testID = submitTest();
+		
+		if(strlen($testID)) {
+			$status = 100;
+		
+			$wait = 10;
+			$maxWait = 100;
+		
+			while($status < 200 && $wait < $maxWait) {
+		
+				$status = getTestStatus($testID);
+		
+				if($status < 200) {
+					sleep($wait);
+					$wait *= 1.5;
+				}
+		
 			}
-	
+		
+			if($status == 200) {
+				getTestResult($testID);
+			}
 		}
-	
-		if($status == 200) {
-			getTestResult($testID);
-		}
+	}  
 }
 
 ?>
