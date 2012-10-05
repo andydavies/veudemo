@@ -1,0 +1,3 @@
+test:
+  override:
+    - phpunit tests/wptunittest # use PHPunit for testing
